@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100">
+  <!-- Rocket M icon -->
+  <path d="M50 6L50 6C50 6 30 28 30 50V74L40 64V42L50 32L60 42V64L70 74V50C70 28 50 6 50 6Z" fill="#00C9A7"/>
+  <path d="M30 74L20 69L30 56Z" fill="#FF6B35"/>
+  <path d="M70 74L80 69L70 56Z" fill="#FF6B35"/>
+  <circle cx="50" cy="40" r="6" fill="#0A1628"/>
+  <!-- Wordmark -->
+  <text x="100" y="58" fill="#0A1628" font-family="system-ui, -apple-system, sans-serif" font-size="38" font-weight="800" letter-spacing="-0.5">manoj</text>
+  <text x="248" y="58" fill="#00C9A7" font-family="system-ui, -apple-system, sans-serif" font-size="38" font-weight="800" letter-spacing="-0.5">soft</text>
+</svg>
