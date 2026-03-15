@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manojsoft — Technology Services & Talent Platform</title>
+<meta name="description" content="Manojsoft delivers AI/ML solutions, cybersecurity services, full-stack development, and expert technical talent screening. Build It. Secure It. Hire For It.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800&family=Satoshi:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a1628;--navy-light:#0f1d35;--navy-mid:#162a4a;
+  --teal:#00c9a7;--teal-dark:#00a88a;--teal-glow:rgba(0,201,167,.15);
+  --accent:#ff6b35;--accent-glow:rgba(255,107,53,.15);
+  --purple:#6c5ce7;--coral:#e17055;
+  --white:#ffffff;--gray-100:#f0f4f8;--gray-200:#d9e2ec;--gray-400:#7b8794;--gray-600:#486581;--gray-800:#243b53;
+  --font-display:'Cabinet Grotesk',sans-serif;
+  --font-body:'Satoshi',sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);color:var(--gray-800);background:var(--white);overflow-x:hidden;line-height:1.6}
+
+/* UTILITY */
+.container{max-width:1200px;margin:0 auto;padding:0 2rem}
+.section-label{font-family:var(--font-display);font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:.75rem}
+.section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.15;margin-bottom:1rem}
+.section-desc{font-size:1.1rem;color:var(--gray-600);max-width:640px;line-height:1.7}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:50px;font-family:var(--font-display);font-weight:700;font-size:.95rem;text-decoration:none;transition:all .3s;cursor:pointer;border:none}
+.btn-primary{background:var(--teal);color:var(--navy);box-shadow:0 4px 20px rgba(0,201,167,.3)}
+.btn-primary:hover{background:var(--teal-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,201,167,.4)}
+.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.3)}
+.btn-outline:hover{border-color:var(--teal);color:var(--teal)}
+.btn-accent{background:var(--accent);color:var(--white);box-shadow:0 4px 20px rgba(255,107,53,.3)}
+.btn-accent:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,107,53,.4)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:.8}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes slideRight{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 0;transition:all .3s}
+nav.scrolled{background:rgba(10,22,40,.95);backdrop-filter:blur(20px);padding:.6rem 0;box-shadow:0 2px 40px rgba(0,0,0,.3)}
+nav .container{display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-family:var(--font-display);font-size:1.4rem;font-weight:800;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:.5rem}
+.nav-logo span{color:var(--teal)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--teal)}
+.nav-cta{background:var(--teal);color:var(--navy);padding:.5rem 1.5rem;border-radius:50px;font-weight:700;font-size:.85rem}
+.nav-cta:hover{color:var(--navy)!important;background:var(--teal-dark)}
+.mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:.5rem}
+.mobile-toggle span{display:block;width:24px;height:2px;background:var(--white);margin:5px 0;transition:all .3s}
+
+/* HERO */
+.hero{background:var(--navy);min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,var(--teal-glow) 0%,transparent 70%);animation:pulse 6s ease-in-out infinite}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);animation:pulse 8s ease-in-out infinite 2s}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:2}
+.hero-content{animation:fadeUp .8s ease-out}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,201,167,.1);border:1px solid rgba(0,201,167,.2);border-radius:50px;padding:.4rem 1rem;font-size:.8rem;color:var(--teal);font-weight:600;margin-bottom:1.5rem}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);font-weight:800;color:var(--white);line-height:1.1;margin-bottom:1.5rem}
+.hero h1 .highlight{background:linear-gradient(135deg,var(--teal),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.15rem;color:var(--gray-400);line-height:1.7;margin-bottom:2rem;max-width:500px}
+.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-visual{position:relative;display:flex;justify-content:center}
+.hero-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;animation:fadeUp 1s ease-out .3s both}
+.hero-card{background:var(--navy-light);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1.5rem;transition:all .4s}
+.hero-card:hover{border-color:var(--teal);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,201,167,.1)}
+.hero-card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:.75rem;font-size:1.2rem}
+.hero-card h3{font-family:var(--font-display);font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:.3rem}
+.hero-card p{font-size:.8rem;color:var(--gray-400);line-height:1.5;margin:0}
+.hc-ai .hero-card-icon{background:rgba(108,92,231,.2);color:#a29bfe}
+.hc-sec .hero-card-icon{background:rgba(225,112,85,.2);color:#fab1a0}
+.hc-dev .hero-card-icon{background:rgba(0,201,167,.2);color:var(--teal)}
+.hc-hire .hero-card-icon{background:rgba(255,107,53,.2);color:#ffbe76}
+
+/* STATS BAR */
+.stats-bar{background:var(--navy-light);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:2.5rem 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.stat-num{font-family:var(--font-display);font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,var(--teal),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:.85rem;color:var(--gray-400);margin-top:.25rem}
+
+/* ENGINES SECTION */
+.engines{padding:6rem 0;background:var(--white)}
+.engines-header{text-align:center;margin-bottom:4rem}
+.engines-header .section-desc{margin:0 auto}
+.engines-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.engine-card{border-radius:20px;padding:3rem;position:relative;overflow:hidden;transition:transform .4s}
+.engine-card:hover{transform:translateY(-4px)}
+.engine-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.engine-services{background:var(--navy);color:var(--white)}
+.engine-services::before{background:linear-gradient(90deg,var(--accent),var(--coral))}
+.engine-talent{background:var(--gray-100);color:var(--gray-800)}
+.engine-talent::before{background:linear-gradient(90deg,var(--teal),var(--teal-dark))}
+.engine-tag{font-family:var(--font-display);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.35rem .8rem;border-radius:50px;display:inline-block;margin-bottom:1.5rem}
+.engine-services .engine-tag{background:var(--accent);color:var(--white)}
+.engine-talent .engine-tag{background:var(--teal);color:var(--navy)}
+.engine-card h3{font-family:var(--font-display);font-size:1.8rem;font-weight:800;margin-bottom:.75rem}
+.engine-card>p{font-size:1rem;opacity:.7;margin-bottom:2rem;line-height:1.6}
+.engine-list{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+.engine-list li{display:flex;align-items:center;gap:.75rem;font-size:.95rem;font-weight:500}
+.engine-list li::before{content:'';width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.engine-services .engine-list li::before{background:var(--accent)}
+.engine-talent .engine-list li::before{background:var(--teal)}
+
+/* SERVICES DETAIL */
+.services-detail{padding:6rem 0;background:var(--gray-100)}
+.services-tabs{display:flex;gap:.5rem;margin-bottom:3rem;flex-wrap:wrap;justify-content:center}
+.tab-btn{padding:.65rem 1.5rem;border-radius:50px;border:2px solid var(--gray-200);background:var(--white);font-family:var(--font-display);font-weight:700;font-size:.85rem;color:var(--gray-600);cursor:pointer;transition:all .3s}
+.tab-btn:hover{border-color:var(--teal);color:var(--teal)}
+.tab-btn.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.tab-content{display:none}
+.tab-content.active{display:block;animation:fadeIn .4s ease}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.service-card{background:var(--white);border-radius:16px;padding:2rem;border:1px solid var(--gray-200);transition:all .4s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.service-card:hover{border-color:transparent;box-shadow:0 8px 40px rgba(0,0,0,.08);transform:translateY(-4px)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card[data-category="ai"]::before{background:var(--purple)}
+.service-card[data-category="cyber"]::before{background:var(--coral)}
+.service-card[data-category="dev"]::before{background:var(--teal)}
+.service-card[data-category="future"]::before{background:var(--accent)}
+.service-card[data-category="talent"]::before{background:var(--teal)}
+.sc-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.3rem}
+.service-card[data-category="ai"] .sc-icon{background:rgba(108,92,231,.1);color:var(--purple)}
+.service-card[data-category="cyber"] .sc-icon{background:rgba(225,112,85,.1);color:var(--coral)}
+.service-card[data-category="dev"] .sc-icon{background:rgba(0,201,167,.1);color:var(--teal)}
+.service-card[data-category="future"] .sc-icon{background:rgba(255,107,53,.1);color:var(--accent)}
+.service-card[data-category="talent"] .sc-icon{background:rgba(0,201,167,.1);color:var(--teal-dark)}
+.service-card h4{font-family:var(--font-display);font-size:1.05rem;font-weight:700;margin-bottom:.5rem;color:var(--navy)}
+.service-card p{font-size:.88rem;color:var(--gray-600);line-height:1.6}
+
+/* HOW IT WORKS */
+.how-it-works{padding:6rem 0;background:var(--navy);color:var(--white)}
+.how-it-works .section-title{color:var(--white)}
+.how-it-works .section-desc{color:var(--gray-400)}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+.step-card{text-align:center;padding:2rem 1.5rem;background:var(--navy-light);border-radius:16px;border:1px solid rgba(255,255,255,.06);position:relative;transition:all .4s}
+.step-card:hover{border-color:var(--teal);transform:translateY(-4px)}
+.step-num{font-family:var(--font-display);font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,var(--teal),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.75rem}
+.step-card h4{font-family:var(--font-display);font-size:1rem;font-weight:700;margin-bottom:.5rem}
+.step-card p{font-size:.85rem;color:var(--gray-400);line-height:1.5}
+
+/* PRICING */
+.pricing{padding:6rem 0;background:var(--white)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.price-card{border-radius:20px;padding:2.5rem;border:2px solid var(--gray-200);transition:all .4s;position:relative}
+.price-card:hover{border-color:var(--teal);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.price-card.featured{border-color:var(--accent);background:var(--navy);color:var(--white)}
+.price-card.featured .price-label{color:var(--gray-400)}
+.price-popular{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--white);font-family:var(--font-display);font-size:.7rem;font-weight:700;padding:.3rem 1rem;border-radius:50px;letter-spacing:.08em;text-transform:uppercase}
+.price-name{font-family:var(--font-display);font-size:1.3rem;font-weight:800;margin-bottom:.25rem}
+.price-label{font-size:.9rem;color:var(--gray-600);margin-bottom:1.5rem}
+.price-amount{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-bottom:.25rem}
+.price-amount .currency{font-size:1.2rem;vertical-align:top}
+.price-period{font-size:.85rem;color:var(--gray-400);margin-bottom:1.5rem}
+.price-features{list-style:none;margin-bottom:2rem;display:flex;flex-direction:column;gap:.6rem}
+.price-features li{font-size:.88rem;display:flex;align-items:start;gap:.5rem}
+.price-features li::before{content:'\2713';color:var(--teal);font-weight:700;flex-shrink:0}
+.price-card.featured .price-features li::before{color:var(--teal)}
+
+/* CTA */
+.cta{padding:6rem 0;background:var(--navy);position:relative;overflow:hidden;text-align:center}
+.cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:400px;background:radial-gradient(ellipse,var(--teal-glow) 0%,transparent 70%)}
+.cta .container{position:relative;z-index:2}
+.cta h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:800;color:var(--white);margin-bottom:1rem}
+.cta p{font-size:1.1rem;color:var(--gray-400);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{background:var(--navy-light);color:var(--gray-400);padding:3rem 0 1.5rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2rem}
+.footer-brand p{font-size:.9rem;line-height:1.6;margin-top:.75rem;max-width:300px}
+.footer-col h4{font-family:var(--font-display);font-size:.85rem;font-weight:700;color:var(--white);margin-bottom:1rem;text-transform:uppercase;letter-spacing:.08em}
+.footer-col a{display:block;color:var(--gray-400);text-decoration:none;font-size:.88rem;margin-bottom:.5rem;transition:color .3s}
+.footer-col a:hover{color:var(--teal)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:1.5rem;display:flex;justify-content:space-between;font-size:.8rem}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero p{margin:0 auto 2rem}
+  .hero-buttons{justify-content:center}
+  .hero-visual{display:none}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem}
+  .engines-grid{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:1fr 1fr;gap:1rem}
+  .pricing-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .mobile-toggle{display:block}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--navy);padding:1.5rem 2rem;gap:1rem;border-top:1px solid rgba(255,255,255,.1)}
+}
+@media(max-width:480px){
+  .steps-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="container">
+    <a href="#" class="nav-logo"><span>M</span>anojsoft</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#services">Services</a>
+      <a href="#how">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact" class="nav-cta">Get Started</a>
+    </div>
+    <button class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">Hyderabad, India &bull; Serving Global Clients</div>
+        <h1>Build It.<br>Secure It.<br><span class="highlight">Hire For It.</span></h1>
+        <p>Technology services and expert talent platform. We deliver AI/ML solutions, cybersecurity assessments, full-stack development &mdash; and screen the talent you need to grow.</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">Start a Project</a>
+          <a href="#services" class="btn btn-outline">Explore Services</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-cards">
+          <div class="hero-card hc-ai">
+            <div class="hero-card-icon">&#x1F9E0;</div>
+            <h3>AI / ML</h3>
+            <p>LLM fine-tuning, AI agents, MCP servers, RAG pipelines</p>
+          </div>
+          <div class="hero-card hc-sec">
+            <div class="hero-card-icon">&#x1F6E1;</div>
+            <h3>Cybersecurity</h3>
+            <p>Red team, pentesting, SOC/SIEM, digital forensics</p>
+          </div>
+          <div class="hero-card hc-dev">
+            <div class="hero-card-icon">&#x1F4BB;</div>
+            <h3>Development</h3>
+            <p>Full stack, blockchain, middleware, microservices</p>
+          </div>
+          <div class="hero-card hc-hire">
+            <div class="hero-card-icon">&#x1F465;</div>
+            <h3>Talent Platform</h3>
+            <p>Expert screening, interview support, corporate training</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div><div class="stat-num">16+</div><div class="stat-label">Years Enterprise Experience</div></div>
+      <div><div class="stat-num">30+</div><div class="stat-label">Services Offered</div></div>
+      <div><div class="stat-num">500+</div><div class="stat-label">Vetted Experts</div></div>
+      <div><div class="stat-num">48hr</div><div class="stat-label">Screening Turnaround</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TWO ENGINES -->
+<section class="engines" id="about">
+  <div class="container">
+    <div class="engines-header reveal">
+      <div class="section-label">Two Engines, One Company</div>
+      <h2 class="section-title">We don&rsquo;t just find talent &mdash;<br>we deliver results</h2>
+      <p class="section-desc">Manojsoft operates as a dual-engine company: professional services delivery and an expert talent marketplace. The two reinforce each other.</p>
+    </div>
+    <div class="engines-grid">
+      <div class="engine-card engine-services reveal">
+        <div class="engine-tag">Professional Services</div>
+        <h3>We build, secure &amp; deploy</h3>
+        <p>Complete project delivery across AI/ML, cybersecurity, and software development.</p>
+        <ul class="engine-list">
+          <li>AI/ML &amp; LLM Solutions</li>
+          <li>Cybersecurity &amp; Red Team</li>
+          <li>Full Stack Development</li>
+          <li>Blockchain &amp; Web3</li>
+          <li>Middleware &amp; SOA</li>
+          <li>Digital Forensics</li>
+        </ul>
+      </div>
+      <div class="engine-card engine-talent reveal">
+        <div class="engine-tag">Talent Platform</div>
+        <h3>We screen, support &amp; train</h3>
+        <p>On-demand access to vetted technical experts for hiring and upskilling.</p>
+        <ul class="engine-list">
+          <li>Technical Screening</li>
+          <li>Interview Support</li>
+          <li>Corporate Training</li>
+          <li>AI/ML Talent Assessment</li>
+          <li>Cybersecurity Vetting</li>
+          <li>Tech Due Diligence</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-detail" id="services">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:2rem">
+      <div class="section-label">Our Services</div>
+      <h2 class="section-title">Everything you need to build,<br>secure &amp; scale</h2>
+    </div>
+    <div class="services-tabs">
+      <button class="tab-btn active" onclick="switchTab('all')">All Services</button>
+      <button class="tab-btn" onclick="switchTab('ai')">AI / ML</button>
+      <button class="tab-btn" onclick="switchTab('cyber')">Cybersecurity</button>
+      <button class="tab-btn" onclick="switchTab('dev')">Development</button>
+      <button class="tab-btn" onclick="switchTab('future')">Future-Proof</button>
+      <button class="tab-btn" onclick="switchTab('talent')">Talent Platform</button>
+    </div>
+    <div class="services-grid" id="servicesGrid">
+      <!-- AI/ML -->
+      <div class="service-card" data-category="ai"><div class="sc-icon">&#x1F9E0;</div><h4>Custom LLM Fine-Tuning</h4><p>Domain-specific models trained with QLoRA &amp; Unsloth on your enterprise data for production use.</p></div>
+      <div class="service-card" data-category="ai"><div class="sc-icon">&#x1F916;</div><h4>AI Agent Design</h4><p>Autonomous agents with tool use, reasoning chains, and multi-step workflows for enterprise automation.</p></div>
+      <div class="service-card" data-category="ai"><div class="sc-icon">&#x1F517;</div><h4>MCP Server Design</h4><p>Model Context Protocol servers connecting AI models to your business tools and data sources.</p></div>
+      <div class="service-card" data-category="ai"><div class="sc-icon">&#x1F4C1;</div><h4>RAG Pipeline Architecture</h4><p>End-to-end retrieval-augmented generation with vector databases, embeddings, and intelligent chunking.</p></div>
+      <div class="service-card" data-category="ai"><div class="sc-icon">&#x2699;</div><h4>MLOps &amp; Infrastructure</h4><p>GPU clusters, model serving (vLLM, TGI), experiment tracking, and CI/CD for ML pipelines.</p></div>
+      <div class="service-card" data-category="ai"><div class="sc-icon">&#x1F441;</div><h4>Computer Vision</h4><p>Object detection, image classification, and video analytics for industrial and commercial applications.</p></div>
+      <!-- Cybersecurity -->
+      <div class="service-card" data-category="cyber"><div class="sc-icon">&#x1F575;</div><h4>Red Team Operations</h4><p>Full adversary simulation: physical intrusion, lateral movement, domain compromise, and exfiltration.</p></div>
+      <div class="service-card" data-category="cyber"><div class="sc-icon">&#x1F50D;</div><h4>Penetration Testing</h4><p>Web, API, mobile, network, and cloud VAPT with expert manual testing beyond automated scanners.</p></div>
+      <div class="service-card" data-category="cyber"><div class="sc-icon">&#x1F6E1;</div><h4>Application Security</h4><p>SAST/DAST, secure code review, threat modelling, and DevSecOps pipeline integration.</p></div>
+      <div class="service-card" data-category="cyber"><div class="sc-icon">&#x1F310;</div><h4>Network Security</h4><p>Architecture review, firewall audits, segmentation testing, wireless security, and VPN assessment.</p></div>
+      <div class="service-card" data-category="cyber"><div class="sc-icon">&#x1F4CA;</div><h4>SOC &amp; SIEM Monitoring</h4><p>24/7 security operations, SIEM deployment, alert tuning, threat hunting, and incident response.</p></div>
+      <div class="service-card" data-category="cyber"><div class="sc-icon">&#x1F4DC;</div><h4>ISO 27001 &amp; Compliance</h4><p>Gap analysis, implementation, and audit prep for ISO 27001, SOC 2, PCI-DSS, and DPDP Act.</p></div>
+      <div class="service-card" data-category="cyber"><div class="sc-icon">&#x1F916;</div><h4>AI Security / Securing AI</h4><p>Prompt injection testing, model theft prevention, data poisoning defense, and adversarial robustness.</p></div>
+      <div class="service-card" data-category="cyber"><div class="sc-icon">&#x1F50E;</div><h4>Digital Forensics</h4><p>Incident investigation, evidence collection, root cause analysis, and expert reporting.</p></div>
+      <!-- Development -->
+      <div class="service-card" data-category="dev"><div class="sc-icon">&#x1F4BB;</div><h4>Full Stack Development</h4><p>React, Angular, Flutter frontends. Java, .NET, Python, Node.js backends. End-to-end delivery.</p></div>
+      <div class="service-card" data-category="dev"><div class="sc-icon">&#x26D3;</div><h4>Blockchain &amp; Web3</h4><p>Smart contracts, DeFi protocols, NFT platforms, tokenization, and dApp development.</p></div>
+      <div class="service-card" data-category="dev"><div class="sc-icon">&#x1F504;</div><h4>Middleware &amp; Integration</h4><p>MuleSoft, IBM MQ, Kafka, RabbitMQ. Enterprise integration and API gateway design.</p></div>
+      <div class="service-card" data-category="dev"><div class="sc-icon">&#x1F3D7;</div><h4>SOA &amp; Microservices</h4><p>Service-oriented architecture, monolith migration, event-driven systems, and API-first design.</p></div>
+      <!-- Future -->
+      <div class="service-card" data-category="future"><div class="sc-icon">&#x1F680;</div><h4>AI Agent Ecosystems</h4><p>Multi-agent orchestration and autonomous workflows replacing manual business processes.</p></div>
+      <div class="service-card" data-category="future"><div class="sc-icon">&#x1F5A7;</div><h4>MCP Server Infrastructure</h4><p>The new API layer for AI. Design, deploy, and maintain MCP servers for your business.</p></div>
+      <div class="service-card" data-category="future"><div class="sc-icon">&#x1F6A8;</div><h4>AI Red Teaming</h4><p>Adversarial testing of LLM deployments: jailbreaking, data exfiltration, and safety evaluation.</p></div>
+      <div class="service-card" data-category="future"><div class="sc-icon">&#x1F3DB;</div><h4>Zero Trust Architecture</h4><p>Design and implementation of zero trust security frameworks for modern enterprise networks.</p></div>
+      <div class="service-card" data-category="future"><div class="sc-icon">&#x2696;</div><h4>AI Governance &amp; Compliance</h4><p>EU AI Act, responsible AI auditing, bias testing, transparency, and compliance frameworks.</p></div>
+      <!-- Talent -->
+      <div class="service-card" data-category="talent"><div class="sc-icon">&#x1F50D;</div><h4>Technical Screening</h4><p>Expert-led candidate evaluations across frontend, backend, AI/ML, cybersecurity, cloud, and more.</p></div>
+      <div class="service-card" data-category="talent"><div class="sc-icon">&#x1F3A4;</div><h4>Interview Support</h4><p>Live technical panelists, mock interviews, and structured evaluation framework design.</p></div>
+      <div class="service-card" data-category="talent"><div class="sc-icon">&#x1F393;</div><h4>Corporate Training</h4><p>Hands-on bootcamps, labs, and workshops delivered by working professionals.</p></div>
+      <div class="service-card" data-category="talent"><div class="sc-icon">&#x1F4CB;</div><h4>Tech Due Diligence</h4><p>Codebase, team, security, and scalability assessment for VC/PE investment decisions.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Simple. Fast. Expert-led.</h2>
+      <p class="section-desc" style="margin:0 auto">Whether you need a project delivered or a candidate screened, we follow a clear process.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal"><div class="step-num">01</div><h4>Tell Us What You Need</h4><p>Project scope, role requirements, or training goals. We understand your context first.</p></div>
+      <div class="step-card reveal"><div class="step-num">02</div><h4>We Match Experts</h4><p>Domain-specific professionals assigned within 24 hours. Real practitioners, not generalists.</p></div>
+      <div class="step-card reveal"><div class="step-num">03</div><h4>Work Gets Done</h4><p>Project delivery, candidate evaluation, or training execution &mdash; with regular updates.</p></div>
+      <div class="step-card reveal"><div class="step-num">04</div><h4>You Get Results</h4><p>Delivered code, security reports, screening scorecards, or trained teams. Measurable outcomes.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Flexible engagement models</h2>
+      <p class="section-desc" style="margin:0 auto">Pay per use or commit to a retainer. No annual lock-ins required.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-name">Pay Per Use</div>
+        <div class="price-label">For ad-hoc needs</div>
+        <div class="price-amount"><span class="currency">&#8377;</span>3,000</div>
+        <div class="price-period">per screening (standard tech)</div>
+        <ul class="price-features">
+          <li>Single candidate evaluation</li>
+          <li>48-hour turnaround</li>
+          <li>Detailed scorecard report</li>
+          <li>Hire/no-hire recommendation</li>
+          <li>Premium (AI/ML, Cyber) from &#8377;8K</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center">Get Started</a>
+      </div>
+      <div class="price-card featured reveal">
+        <div class="price-popular">Most Popular</div>
+        <div class="price-name">Monthly Retainer</div>
+        <div class="price-label">For steady hiring &amp; projects</div>
+        <div class="price-amount"><span class="currency">&#8377;</span>50,000</div>
+        <div class="price-period">per month</div>
+        <ul class="price-features">
+          <li>Block of hours for services + screening</li>
+          <li>Priority scheduling</li>
+          <li>Dedicated expert pool</li>
+          <li>Same-day urgent assignments</li>
+          <li>Monthly reporting &amp; review</li>
+        </ul>
+        <a href="#contact" class="btn btn-accent" style="width:100%;justify-content:center">Get Started</a>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-name">Enterprise</div>
+        <div class="price-label">For large organizations</div>
+        <div class="price-amount">Custom</div>
+        <div class="price-period">based on scope &amp; volume</div>
+        <ul class="price-features">
+          <li>Dedicated team</li>
+          <li>Custom SLAs</li>
+          <li>Services + screening + training</li>
+          <li>Project-based delivery</li>
+          <li>Tech due diligence included</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="container reveal">
+    <h2>Ready to build, secure,<br>or hire smarter?</h2>
+    <p>Whether it&rsquo;s an AI agent, a red team assessment, or screening your next hire &mdash; let&rsquo;s talk.</p>
+    <div class="cta-buttons">
+      <a href="mailto:info@manojsoft.com" class="btn btn-primary">&#x2709; info@manojsoft.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" style="margin-bottom:.5rem"><span>M</span>anojsoft</a>
+        <p>Technology services and expert talent platform. Build it. Secure it. Hire for it.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#services">AI / ML Solutions</a>
+        <a href="#services">Cybersecurity</a>
+        <a href="#services">Development</a>
+        <a href="#services">Blockchain</a>
+      </div>
+      <div class="footer-col">
+        <h4>Talent</h4>
+        <a href="#services">Technical Screening</a>
+        <a href="#services">Interview Support</a>
+        <a href="#services">Corporate Training</a>
+        <a href="#services">Tech Due Diligence</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#about">About Us</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Manojsoft. All rights reserved.</span>
+      <span>Hyderabad, Telangana, India</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
+});
+
+// Reveal on scroll
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Tab filtering
+function switchTab(cat){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.service-card').forEach(c=>{
+    c.style.display=(cat==='all'||c.dataset.category===cat)?'block':'none';
+  });
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
